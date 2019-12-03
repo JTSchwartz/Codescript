@@ -1,0 +1,25 @@
+{
+  "name": "codescript",
+  "version": "1.0.0",
+  "description": "Pseudo DSL for help in formatting multiline blocks in HTML code tags",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JTSchwartz/Codescript.git"
+  },
+  "keywords": [
+    "code",
+    "tag",
+    "dsl",
+    "html"
+  ],
+  "author": "Jacob Schwartz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JTSchwartz/Codescript/issues"
+  },
+  "homepage": "https://github.com/JTSchwartz/Codescript#readme"
+}
