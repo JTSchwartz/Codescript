@@ -8,8 +8,24 @@ function codescript(codeString, marginChar = "|", spaceCount = 4) {
 	return codeString
 }
 
-function dsl(codeTag) {
-	codeTag.innerHTML = codescript(codeTag.innerHTML)
+function dsl(codeTag, ...options) {
+	codeTag.innerHTML = codescript(codeTag.innerHTML, ...options)
+}
+
+function formatAll(...options) {
+	let tags = document.getElementsByTagName("code");
+	
+	for (let i = 0; i < tags.length; i++) {
+		dsl(tags[i], ...options)
+	}
+}
+
+function formatTagged(...options) {
+	let classes = document.getElementsByClassName("codescript");
+	
+	for (let i = 0; i < classes.length; i++) {
+		dsl(classes[i], ...options)
+	}
 }
 
 String.prototype.csMargins = function (marginChar = "|") {
@@ -32,5 +48,7 @@ String.prototype.csTabs = function (spaceCount = 4) {
 
 module.exports = {
 	codescript: codescript(),
-	dsl:        dsl()
+	dsl:        dsl(),
+	format:     formatTagged(),
+	formatAll:  formatAll()
 };
