@@ -1,16 +1,36 @@
-function codescript(codeString, marginChar = "|", spaceCount= 4) {
-	// Handle margins
-	let margins = new RegExp(`^[^${marginChar}]*\\|+/gm`);
-	codeString = codeString.replace(margins, "");
+function codescript(codeString, marginChar = "|", spaceCount = 4) {
+	codeString.csMargins(marginChar);
 	
-	// Handle tabs
-	codeString = codeString.replace(/\\t/gm, "&nbsp;".repeat(spaceCount));
+	codeString.csNewlines();
+	
+	codeString.csTabs(spaceCount);
 	
 	return codeString
 }
 
-module.exports = codescript;
-
-module.exports = function dsl(codeTag) {
+function dsl(codeTag) {
 	codeTag.innerHTML = codescript(codeTag.innerHTML)
+}
+
+String.prototype.csMargins = function (marginChar = "|") {
+	let margins = new RegExp(`^[^${marginChar}]*\\|+/gm`);
+	
+	return this.replace(margins, "");
+};
+
+String.prototype.csNewlines = function () {
+	let newlines = new RegExp(`/$/gm`);
+	
+	return this.trim().replace(newlines, "<br/>")
+};
+
+String.prototype.csTabs = function (spaceCount = 4) {
+	let tabs = new RegExp(`/\\\\t/gm`);
+	
+	return this.replace(tabs, "&nbsp;".repeat(spaceCount));
+};
+
+module.exports = {
+	codescript: codescript(),
+	dsl:        dsl()
 };
